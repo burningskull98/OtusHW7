@@ -1,0 +1,14 @@
+FROM ubuntu:latest
+LABEL authors="79529"
+
+ENTRYPOINT ["top", "-b"]
+from python:3.12
+
+RUN apt-get update
+
+COPY ./requirements.txt ./requirements.txt
+
+RUN pip3 install --upgrade pip && pip3 install -r requirements.txt
+RUN pip3 install gunicorn
+
+COPY ./ ./

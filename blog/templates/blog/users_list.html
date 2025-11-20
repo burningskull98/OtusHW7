@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}List of users{% endblock %}
+
+{% block content %}
+        <h1>Список пользователей</h1>
+        <ul class="list-group">
+            {% for user in users %}
+            <li class="list-group-item">
+               <a href="{% url 'user_posts' user.pk %}"> <h5>{{ user.name }}</h5></a>
+                {% if user.profile %}
+                    <p>{{ user.profile.bio }}</p>
+                    <p>{{ user.profile.website }}</p>
+                {% else %}
+                    <p>Нет информации о профиле</p>
+                {% endif %}
+                <small>Количество постов: {{ user.posts.count }}</small>
+            </li>
+            {% empty %}
+                 <li class="list-group-item">Нет пользователей</li>
+            {% endfor %}
+
+        </ul>
+{% endblock %}

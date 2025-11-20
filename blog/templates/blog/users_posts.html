@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+
+{% block title %} User Posts {{ user.name }}{% endblock %}
+
+{% block content %}
+        <h1>Посты пользователя {{ user.name }}</h1>
+
+        <ul class="list-group">
+            {% for post in posts %}
+            <li class="list-group-item">
+                <h5>{{ post.title }}</h5>
+                <p>{{ post.content }}></p>
+                <small>Пользователь {{ post.user.name }}</small>
+            </li>
+            {% empty %}
+                 <li class="list-group-item">Нет постов</li>
+            {% endfor %}
+
+        </ul>
+{% endblock %}

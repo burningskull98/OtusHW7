@@ -4,12 +4,12 @@ from blog.models import Post, User
 
 
 @pytest.fixture
-def user():
+def user(db):
     return User.objects.create(name="Test User")
 
 
 @pytest.fixture
-def post( user):
+def post(db, user):
     return Post.objects.create(title="Test Title", content="Test Content", user=user)
 
 
